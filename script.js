@@ -1,5 +1,5 @@
 function fetchDropdownOptions() {
-  fetch('https://script.google.com/a/macros/audigent.com/s/AKfycbxjcTepxod05YGEXvyRNkgBj8JTg47hxelguoew-ymU1l7uryRMh9Vr21FiiT67jGD0/exec') // Replace with your script URL
+  fetch('https://script.google.com/macros/s/AKfycbxjcTepxod05YGEXvyRNkgBj8JTg47hxelguoew-ymU1l7uryRMh9Vr21FiiT67jGD0/exec') // Replace with your script URL
     .then(response => response.json())
     .then(data => {
       // Populate product name dropdown
@@ -41,7 +41,7 @@ function handleSubmit(event) {
     // Add other form fields as needed
   };
 
-  fetch('https://script.google.com/a/macros/audigent.com/s/AKfycbxjcTepxod05YGEXvyRNkgBj8JTg47hxelguoew-ymU1l7uryRMh9Vr21FiiT67jGD0/exec', {
+  fetch('https://script.google.com/macros/s/AKfycbxjcTepxod05YGEXvyRNkgBj8JTg47hxelguoew-ymU1l7uryRMh9Vr21FiiT67jGD0/exec', {
     method: 'POST',
     body: JSON.stringify(formData),
     headers: {
