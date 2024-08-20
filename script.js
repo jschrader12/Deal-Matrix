@@ -22,6 +22,10 @@ function fetchDropdownOptions() {
     })
     .catch(error => {
       console.error('Error fetching dropdown options:', error);
+      // Handle error, e.g., display an error message to the user
+      const errorMessage = document.createElement('p');
+      errorMessage.textContent = 'An error occurred while loading dropdown options. Please try again later.';
+      document.body.appendChild(errorMessage);
     });
 }
 
@@ -48,10 +52,16 @@ function handleSubmit(event) {
   .then(data => {
     console.log('Success:', data);
     // Handle successful submission, e.g., display a success message
+    const successMessage = document.createElement('p');
+    successMessage.textContent = 'Form submitted successfully!';
+    document.body.appendChild(successMessage);
   })
   .catch(error => {
-    console.error('Error:', error);
-    // Handle error, e.g., display an error message
+    console.error('Error submitting form:', error);
+    // Handle error, e.g., display an error message to the user
+    const errorMessage = document.createElement('p');
+    errorMessage.textContent = 'An error occurred while submitting the form. Please try again later.';
+    document.body.appendChild(errorMessage);
   });
 }
 
