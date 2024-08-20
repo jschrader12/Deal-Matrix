@@ -1,9 +1,16 @@
 function fetchDropdownOptions() {
-  fetch('https://script.google.com/macros/s/AKfycbxjcTepxod05YGEXvyRNkgBj8JTg47hxelguoew-ymU1l7uryRMh9Vr21FiiT67jGD0/exec') // Replace with your script URL
+  fetch('https://script.google.com/a/macros/audigent.com/s/AKfycbxjcTepxod05YGEXvyRNkgBj8JTg47hxelguoew-ymU1l7uryRMh9Vr21FiiT67jGD0/exec') // Replace with your script URL
     .then(response => response.json())
     .then(data => {
-      // Populate product name dropdown
+      // Populate dropdown options
       const productNameSelect = document.getElementById('productName');
+      const channelSelect = document.getElementById('channel');
+      const masterClientSelect = document.getElementById('masterClient');
+      const dspSelect = document.getElementById('dsp');
+      const sspSelect = document.getElementById('ssp');
+      const statusSelect = document.getElementById('status');
+      const accountClassificationSelect = document.getElementById('accountClassification');
+
       data.productNames.forEach(productName => {
         const option = document.createElement('option');
         option.value = productName;
@@ -11,21 +18,52 @@ function fetchDropdownOptions() {
         productNameSelect.appendChild(option);
       });
 
-      // Populate channel dropdown (and other dropdowns similarly)
-      const channelSelect = document.getElementById('channel');
       data.channelOptions.forEach(channel => {
         const option = document.createElement('option');
         option.value = channel;
         option.text = channel;
         channelSelect.appendChild(option);
       });
+
+      // Populate other dropdown options similarly
+
+      data.masterClientOptions.forEach(masterClient => {
+        const option = document.createElement('option');
+        option.value = masterClient;
+        option.text = masterClient;
+        masterClientSelect.appendChild(option);
+      });
+
+      data.dspOptions.forEach(dsp => {
+        const option = document.createElement('option');
+        option.value = dsp;
+        option.text = dsp;
+        dspSelect.appendChild(option);
+      });
+
+      data.sspOptions.forEach(ssp => {
+        const option = document.createElement('option');
+        option.value = ssp;
+        option.text = ssp;
+        sspSelect.appendChild(option);
+      });
+
+      data.statusOptions.forEach(status => {
+        const option = document.createElement('option');
+        option.value = status;
+        option.text = status;
+        statusSelect.appendChild(option);
+      });
+
+      data.accountClassificationOptions.forEach(accountClassification => {
+        const option = document.createElement('option');
+        option.value = accountClassification;
+        option.text = accountClassification;
+        accountClassificationSelect.appendChild(option);
+      });
     })
     .catch(error => {
       console.error('Error fetching dropdown options:', error);
-      // Handle error, e.g., display an error message to the user
-      const errorMessage = document.createElement('p');
-      errorMessage.textContent = 'An error occurred while loading dropdown options. Please try again later.';
-      document.body.appendChild(errorMessage);
     });
 }
 
@@ -38,10 +76,14 @@ function handleSubmit(event) {
     masterClient: document.getElementById('masterClient').value,
     productName: document.getElementById('productName').value,
     channel: document.getElementById('channel').value,
+    dsp: document.getElementById('dsp').value,
+    ssp: document.getElementById('ssp').value,
+    status: document.getElementById('status').value,
+    accountClassification: document.getElementById('accountClassification').value,
     // Add other form fields as needed
   };
 
-  fetch('https://script.google.com/macros/s/AKfycbxjcTepxod05YGEXvyRNkgBj8JTg47hxelguoew-ymU1l7uryRMh9Vr21FiiT67jGD0/exec', {
+  fetch('https://script.google.com/a/macros/audigent.com/s/AKfycbxjcTepxod05YGEXvyRNkgBj8JTg47hxelguoew-ymU1l7uryRMh9Vr21FiiT67jGD0/exec', {
     method: 'POST',
     body: JSON.stringify(formData),
     headers: {
@@ -52,16 +94,10 @@ function handleSubmit(event) {
   .then(data => {
     console.log('Success:', data);
     // Handle successful submission, e.g., display a success message
-    const successMessage = document.createElement('p');
-    successMessage.textContent = 'Form submitted successfully!';
-    document.body.appendChild(successMessage);
   })
   .catch(error => {
-    console.error('Error submitting form:', error);
-    // Handle error, e.g., display an error message to the user
-    const errorMessage = document.createElement('p');
-    errorMessage.textContent = 'An error occurred while submitting the form. Please try again later.';
-    document.body.appendChild(errorMessage);
+    console.error('Error:', error);
+    // Handle error, e.g., display an error message
   });
 }
 
